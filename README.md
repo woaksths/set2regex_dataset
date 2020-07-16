@@ -4,6 +4,7 @@
 ## Install 
     $git clone https://github.com/0xnurl/fado-python3.git
     $python3 -m venv venv
+    $source venv/bin/activate
     $pip install -r requirements.txt
     $python fado-python3/setup.py install
 
