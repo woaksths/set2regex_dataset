@@ -8,13 +8,14 @@ def main():
             + get_dataset('data/regex/star2.txt')+get_dataset('data/regex/star3.txt')
     dataset = []
     num_samples = 50
-
     for idx, regex in enumerate(regex_set):
         print(idx, regex)
         positive_samples = get_positive_samples(regex, num_samples)
         if len(positive_samples) < num_samples:
             positive_samples.extend([random.choice(positive_samples) for _ in range(num_samples-len(positive_samples))])
         negative_samples = get_negative_samples(regex, regex_set, num_samples)
+        if None in negative_samples:  # There is not negative samples in case of \sigma *
+            continue
         if len(negative_samples) < num_samples:
             negative_samples.extend([random.choice(negative_samples) for _ in range(num_samples-len(negative_samples))])
         positive_samples = preprocess_source(positive_samples)
@@ -23,7 +24,6 @@ def main():
         pair_data = '\t'.join(positive_samples) + '\t<sep>\t' +\
                     '\t'.join(negative_samples) + '\t<sep>\t' + regex
         dataset.append(pair_data)
-
     file_write('data/pair_data.txt', dataset)
 
 

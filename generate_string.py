@@ -54,7 +54,8 @@ def get_negative_samples(target_regex, regex_set, set_size):
             rand_str = rstr.rstr([rstr.rstr('0123', 0, 4) for _ in range(30)], 7)
             if not membership(target_regex, rand_str):
                 neg_samples.add(rand_str)
-            continue
+                continue
+            early_stop_cnt += 1
         neg_samples.add(negative_dfa.witness())
     neg_samples = list(neg_samples)
     neg_samples.sort()
