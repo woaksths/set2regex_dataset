@@ -25,15 +25,36 @@ def get_positive_samples(regex, set_num):
     return positive_samples
 
 
+def membership(target_regex, rand_str):
+    import re
+    p = re.compile(target_regex)
+    m = p.match(rand_str)
+    result = False
+    if m and m.end()-m.start() == len(rand_str):
+        result = True
+    else:
+        result = False
+    return result
+
+
 def get_negative_samples(target_regex, regex_set, set_size):
     neg_samples = set()
+    early_stop_cnt = 0
     while len(neg_samples) < set_size:
         random_regex = random.choice(regex_set)
+        if early_stop_cnt == 30:
+            break
         if target_regex == random_regex:
+            early_stop_cnt += 1
             continue
         target_dfa = str2regexp(target_regex).toDFA()
         random_dfa = str2regexp(random_regex).toDFA()
         negative_dfa = ~target_dfa & random_dfa
+        if negative_dfa.witness() is None:
+            rand_str = rstr.rstr([rstr.rstr('0123', 0, 4) for _ in range(30)], 7)
+            if not membership(target_regex, rand_str):
+                neg_samples.add(rand_str)
+            continue
         neg_samples.add(negative_dfa.witness())
     neg_samples = list(neg_samples)
     neg_samples.sort()
