@@ -8,7 +8,7 @@ regex_set0 = set()
 regex_set1 = set()
 regex_set2 = set()
 regex_set3 = set()
-set_size = 55000
+set_size = 20000
 
 
 while len(regex_set0) < set_size or len(regex_set1) < set_size or len(regex_set2) < set_size \

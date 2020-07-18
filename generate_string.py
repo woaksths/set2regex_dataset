@@ -56,6 +56,7 @@ def get_negative_samples(target_regex, regex_set, set_size):
                 neg_samples.add(rand_str)
                 continue
             early_stop_cnt += 1
+            continue
         neg_samples.add(negative_dfa.witness())
     neg_samples = list(neg_samples)
     neg_samples.sort()
