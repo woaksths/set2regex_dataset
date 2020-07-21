@@ -11,3 +11,7 @@
 ## Usage 
     $python generate_regex.py
     $python main.py
+
+
+## Downloads
+    [downloads] https://drive.google.com/file/d/1BdOuBAjYpiJNezzf3IQYGFIJIxg7LA2K/view?usp=sharing
