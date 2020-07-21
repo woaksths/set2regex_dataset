@@ -14,7 +14,7 @@ def main():
         if len(positive_samples) < num_samples:
             positive_samples.extend([random.choice(positive_samples) for _ in range(num_samples-len(positive_samples))])
         negative_samples = get_negative_samples(regex, regex_set, num_samples)
-        if None in negative_samples:  # There is not negative samples in case of \sigma *
+        if None in negative_samples or len(negative_samples) == 0:  # There is not negative samples in case of \sigma *
             continue
         if len(negative_samples) < num_samples:
             negative_samples.extend([random.choice(negative_samples) for _ in range(num_samples-len(negative_samples))])
