@@ -42,7 +42,7 @@ with open(dataset_path, 'r') as rf:
     test_ratio = int(0.1 * 20000) 
 
     train = star0_set[:train_ratio] + star1_set[:train_ratio] + star2_set[:train_ratio]+star3_set[:train_ratio]
-    valid = star0_set[train_ratio:train_ratio+valid_ratio] +star1_set[train_ratio:train_ratio+valid_ratio]+star2_set[train_ratio:train_ratio+valid_ratio]+ star0_set[train_ratio:train_ratio+valid_ratio]
+    valid = star0_set[train_ratio:train_ratio+valid_ratio] +star1_set[train_ratio:train_ratio+valid_ratio]+star2_set[train_ratio:train_ratio+valid_ratio]+ star3_set[train_ratio:train_ratio+valid_ratio]
     test = star0_set[train_ratio+valid_ratio:]+star1_set[train_ratio+valid_ratio:]+star2_set[train_ratio+valid_ratio:]+star3_set[train_ratio+valid_ratio:]   
     
     print('train size{} valid size{} test size{}'.format(len(train), len(valid), len(test)))
